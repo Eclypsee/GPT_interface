@@ -1,0 +1,93 @@
+body {
+    font-family: Exo;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    background: #2b5876;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #4e4376, #2b5876);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #4e4376, #2b5876); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color:white;
+}
+
+
+.container {
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 75vw;
+    height:75vh;
+    text-align: center;
+    background:#3a393c;
+}
+
+#chatbox {
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+    height: 50vh;
+    overflow:wrap;
+    overflow-y: auto;
+    background:#2e2e2f;
+}
+
+#messages {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color:white;
+}
+
+.message {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.message .sender {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.message .content {
+    max-width: 200px;
+    word-wrap: break-word;
+    text-align: left;
+}
+
+#user-input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    overflow-y:auto;
+    background:#2e2e2f;
+    color:white;
+}
+
+#send-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#send-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+#send-button:disabled:hover {
+    background-color: #aaaaaa; /* Hover color for disabled state */
+}
+
+#send-button:not(:disabled):hover {
+    background-color: #0056b3; /* Hover color for enabled state */
+}
