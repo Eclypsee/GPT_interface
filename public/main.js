@@ -36,19 +36,18 @@ function appendMessage(sender, message) {
 }
 
 async function fetchChatGPTResponse(userInput) {
-    const response = await fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
+    const response = await fetch('/api/chatgpt', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer YOUR_API_KEY`
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            prompt: userInput,
-            max_tokens: 150
-        })
+        body: JSON.stringify({ prompt: userInput })
     });
 
-    const data = await response.json();
-    const botMessage = data.choices[0].text.trim();
-    appendMessage('ChatGPT', botMessage);
+    const botMessage = await response.json();
+    if (botMessage.error) {
+        appendMessage('Error', botMessage.error);
+    } else {
+        appendMessage('ChatGPT', botMessage.text);
+    }
 }
