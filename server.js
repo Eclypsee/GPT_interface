@@ -1,5 +1,5 @@
 const express = require('express');
-const fetch = require('node-fetch');
+const OpenAI = require('openai');
 require('dotenv').config();
 
 const app = express();
@@ -7,6 +7,11 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.static('public'));
+
+// Initialize OpenAI with the API key
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 app.post('/api/chatgpt', async (req, res) => {
     const userInput = req.body.prompt;
@@ -20,21 +25,15 @@ app.post('/api/chatgpt', async (req, res) => {
     }
 
     try {
-        const response = await fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
-            },
-            body: JSON.stringify({
-                prompt: userInput,
-                max_tokens: 150
-            })
+        const response = await openai.chat.completions.create({
+            model: 'gpt-3.5-turbo', // Updated model name
+            messages: [{ role: 'user', content: userInput }],
+            max_tokens: 150,
         });
 
-        const data = await response.json();
-        if (data.choices && data.choices.length > 0) {
-            res.json({ text: data.choices[0].text.trim() });
+        const data = response.choices;
+        if (data && data.length > 0) {
+            res.json({ text: data[0].message.content.trim() });
         } else {
             res.status(500).json({ error: 'Invalid response from API' });
         }
