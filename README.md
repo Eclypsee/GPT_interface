@@ -3,6 +3,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
+Before running the server, make sure your OpenAI key is set in the .env file.
+
 In the server directory, run:
 ### `npm install`
 
