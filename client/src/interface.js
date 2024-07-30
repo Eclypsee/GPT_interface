@@ -1,6 +1,4 @@
-document.getElementById('send-button').addEventListener('click', sendMessage);
-
-async function sendMessage() {
+export async function sendMessage() {
     const userInput = document.getElementById('user-input').value;
     if (userInput.trim() === '') return;
 
@@ -15,14 +13,14 @@ async function sendMessage() {
     sendButton.disabled = false;
 }
 
-function appendMessage(sender, message) {
+export function appendMessage(sender, message) {
     const messagesDiv = document.getElementById('messages');
     const messageElement = document.createElement('div');
     messageElement.classList.add('message');
 
     const senderElement = document.createElement('div');
     senderElement.classList.add('sender');
-    senderElement.textContent = `${sender}:`;
+    senderElement.textContent = sender.toUpperCase();
 
     const contentElement = document.createElement('div');
     contentElement.classList.add('content');
@@ -35,8 +33,8 @@ function appendMessage(sender, message) {
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
 
-async function fetchChatGPTResponse(userInput) {
-    const response = await fetch('/api/chatgpt', {
+export async function fetchChatGPTResponse(userInput) {
+    const response = await fetch('http://localhost:3000/api/chatgpt', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

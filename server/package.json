@@ -3,13 +3,14 @@
     "version": "1.0.0",
     "main": "server.js",
     "dependencies": {
+        "cors": "^2.8.5",
         "dotenv": "^10.0.0",
         "express": "^4.19.2",
         "node-fetch": "^2.6.1",
         "openai": "^4.52.7"
     },
     "scripts": {
-        "start": "node server.js",
+        "start": "node index.js",
         "stop": "pkill node"
     }
 }
