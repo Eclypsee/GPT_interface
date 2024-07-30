@@ -3,8 +3,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Testing Versions
-Node.js: v20.11.0
-npm: 10.8.2
+**Node.js**: v20.11.0\
+**npm**: 10.8.2\
 The project has been known to be buggy on older versions of Node.js.
 
 ## Available Scripts
