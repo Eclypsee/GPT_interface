@@ -13,10 +13,14 @@ Dependency Versions
 
 Script Install
 ------
-> [!NOTE]
-> By default scripts run `node` on port `3000` and `npm` on port `3001`.
+> [!TIP]
+> Make sure to `fetch` latest updates and be on the correct `react` branch prior to running script(s).
+> ```bash
+> git fetch
+> git checkout react
+> ```
 
-### To build and run:
+### To _build and run_:
 ```bash
 cd /path/to/GPT_interface/scripts
 chmod +x build+start.sh
@@ -24,21 +28,15 @@ chmod +x build+start.sh
 ```
 Open http://localhost:3001 to view it in your browser.
 
-> [!TIP]
-> Make sure to be on the correct `react` branch and `fetch` latest updates prior to running script.
-> ```bash
-> git fetch
-> git checkout react
-> ```
-#### Done!
 
-### To only run the servers execute `start.sh` script instead:
+### To _run and not build_ execute `start.sh` script instead:
 ```bash
 chmod +x start.sh
 ./start.sh
 ```
+By default scripts run `node` on port `3000` and `npm` on port `3001`.
 
-To terminate servers, in CLI:
+### To terminate servers, in CLI:
 ```bash
 CTRL + C
 ```
