@@ -18,7 +18,7 @@ Script Install
 
 ### To build and run:
 ```bash
-cd /path/to/GPT_interface
+cd /path/to/GPT_interface/scripts
 chmod +x build+start.sh
 ./build+start.sh
 ```
