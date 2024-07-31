@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #define the server and client directories
-SERVER_DIR="server"
-CLIENT_DIR="client"
+SERVER_DIR="../server"
+CLIENT_DIR="../client"
 
 #function to check if a port is available
 check_port() {
