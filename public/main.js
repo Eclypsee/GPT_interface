@@ -1,4 +1,25 @@
 document.getElementById('send-button').addEventListener('click', sendMessage);
+document.getElementById('download-button').addEventListener('click', downloadCodebase);
+
+async function downloadCodebase() {
+    const url = document.getElementById('codebase-url').value;
+    if (url.trim() === '') return;
+
+    const response = await fetch('/api/download', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ url })
+    });
+
+    const result = await response.json();
+    if (result.error) {
+        alert(result.error);
+    } else {
+        alert('Codebase downloaded and cached');
+    }
+}
 
 async function sendMessage() {
     const userInput = document.getElementById('user-input').value;
@@ -36,12 +57,13 @@ function appendMessage(sender, message) {
 }
 
 async function fetchChatGPTResponse(userInput) {
+    const codebasePath = '../codebases/main'
     const response = await fetch('/api/chatgpt', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ prompt: userInput })
+        body: JSON.stringify({ prompt: userInput, codebasePath})
     });
 
     const botMessage = await response.json();

@@ -1,5 +1,9 @@
 const express = require('express');
 const OpenAI = require('openai');
+const axios = require('axios');
+const AdmZip = require('adm-zip');
+const fs = require('fs');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -12,6 +16,33 @@ app.use(express.static('public'));
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
+
+
+// Endpoint to download and cache a codebase
+app.post('/api/download', async (req, res) => {
+    const { url } = req.body;
+  
+    if (!url) {
+      return res.status(400).json({ error: 'URL is required' });
+    }
+  
+    try {
+      const response = await axios({
+        url,
+        method: 'GET',
+        responseType: 'arraybuffer'
+      });
+  
+      const zip = new AdmZip(response.data);
+      const extractPath = path.join(__dirname, 'codebases', path.basename(url, '.zip'));
+      zip.extractAllTo(extractPath, true);
+  
+      res.json({ message: 'Codebase downloaded and extracted', path: extractPath });
+    } catch (error) {
+      console.error('Error downloading codebase:', error);
+      res.status(500).json({ error: 'Failed to download codebase' });
+    }
+  });
 
 app.post('/api/chatgpt', async (req, res) => {
     const userInput = req.body.prompt;
@@ -31,9 +62,11 @@ app.post('/api/chatgpt', async (req, res) => {
             max_tokens: 150,
         });
 
+        console.log(response.choices[0].message.content);
+
         const data = response.choices;
         if (data && data.length > 0) {
-            res.json({ text: data[0].message.content.trim() });
+            res.json({ text: data[0].message.content});
         } else {
             res.status(500).json({ error: 'Invalid response from API' });
         }
