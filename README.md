@@ -89,13 +89,13 @@ sudo su
 to enter superuser mode and be able to delete certain directories.
 
 ### Using PM2
-PM2 is used here to keep the application online on the IP address given above. It is best to only keep one application online at a time for now as not every port has been set as valid on the AWS website. **It is heavily recommended to set PORT to 80 inside the .env file and then update the interface.js file within the frontend code to use the *env* string.**\
+PM2 is used here to keep the application online on the IP address given above. It is best to only keep one application online at a time for now as not every port has been set as valid on the AWS website. **It is heavily recommended to set PORT to 80 inside the .env file and then update the interface.js file within the frontend code to use the *env* string.**
 
 In order to use PM2, please run
 ```bash
 cd ChatGPT_interface
 ```
-in the instance's root directory. Ensure that all steps have been taken to set up the server.\
+in the instance's root directory. Ensure that all steps have been taken to set up the server.
 
 To install PM2, run:
 ```bash
