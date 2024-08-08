@@ -9,7 +9,7 @@ Dependency Versions
 > [!CAUTION]\
 > Before running the server, make sure your OpenAI key is set in the .env file. The .env file is **not** included in the root directory, so you must create it. You should also create an environment variable called OPENAI_API_KEY and set it to your key.\
 > Make sure port 3000 is available as the server defaults to it on a local machine. **You can also set your own port in the .env file by creating an environment variable called PORT. (Manual install only)**\
-> If you set your own port, please see [here](###configuring-custom-ports) for additional steps.
+> If you set your own port, please see **'Configuring custom ports'** for additional steps.
 
 Git Preliminaries
 ------
@@ -80,7 +80,7 @@ chmod 600 abc.pem
 ```
 Please then clone the repository and switch to the **deploy** branch as discussed above.\
 You may have to log in to GitHub to clone this repository. For your password, you can use a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).\
-You should have a **GPT_interface** directory wherever you have cloned the repository. Please make sure you [install node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm); however, the instance should already have these installed if you work in superuser mode.\
+You should have a **GPT_interface** directory wherever you have cloned the repository. Please make sure you [install node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm); however, the instance should already have these installed if you work in superuser mode.
 
 It is recommended to test the application on a local environment, update the repository with your code, and then clone it to run it on the instance. You will need to run
 ```bash
